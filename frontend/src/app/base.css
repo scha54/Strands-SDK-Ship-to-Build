@@ -1,0 +1,125 @@
+/*
+ * Mobile-first base layout and reflow-safe stylesheet.
+ *
+ * Requirements:
+ * - R-09.5 / NFR-04: content must reflow with no horizontal scroll and no loss
+ *   of information from a 320 CSS px viewport upward. We cap widths at 100%,
+ *   avoid fixed pixel widths that exceed 320px, allow long words to break, and
+ *   use a single-column flow that only widens on larger screens.
+ * - R-09.1 / NFR-03: visible focus, adequate contrast, and honouring reduced
+ *   motion preferences.
+ */
+
+:root {
+  --ic-color-bg: #ffffff;
+  --ic-color-surface: #f4f6fb;
+  --ic-color-text: #1a1c23; /* >= 4.5:1 on white */
+  --ic-color-muted: #44474f; /* >= 4.5:1 on white */
+  --ic-color-accent: #0b5cad; /* >= 4.5:1 on white */
+  --ic-color-notice-bg: #fff4e5;
+  --ic-color-notice-border: #b35900; /* >= 3:1 border */
+  --ic-color-notice-text: #5a3200; /* >= 4.5:1 on notice bg */
+  --ic-focus-ring: #0b5cad;
+  --ic-space-sm: 0.5rem;
+  --ic-space-md: 1rem;
+  --ic-space-lg: 1.5rem;
+  --ic-radius: 0.5rem;
+  --ic-max-content: 48rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Prevent iOS text auto-inflation without disabling user zoom. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  /* Hard guarantee against horizontal scroll at any width. */
+  overflow-x: hidden;
+  background: var(--ic-color-bg);
+  color: var(--ic-color-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Long object names or model text must wrap rather than force a scrollbar. */
+p,
+h1,
+h2,
+h3,
+li,
+figcaption {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.ic-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ic-app__main {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: var(--ic-max-content);
+  margin-inline: auto;
+  padding: var(--ic-space-md);
+}
+
+/* Single-column stack on small screens; the max-width above keeps wide screens
+ * readable without ever requiring horizontal scroll on narrow ones. */
+.ic-stack > * + * {
+  margin-top: var(--ic-space-md);
+}
+
+:focus-visible {
+  outline: 3px solid var(--ic-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Skip link: visually hidden until focused, then revealed at the top-left. */
+.ic-skip-link {
+  position: absolute;
+  left: var(--ic-space-sm);
+  top: -3rem;
+  z-index: 10;
+  padding: var(--ic-space-sm) var(--ic-space-md);
+  background: var(--ic-color-accent);
+  color: #ffffff;
+  border-radius: var(--ic-radius);
+  text-decoration: none;
+  transition: top 0.15s ease-in-out;
+}
+
+.ic-skip-link:focus {
+  top: var(--ic-space-sm);
+}

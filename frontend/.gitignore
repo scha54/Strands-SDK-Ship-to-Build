@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+*.local
+*.tsbuildinfo
+
+# Build artifact of the type-generation pipeline; regenerate with `npm run gen:schema`.
+openapi.json
+
+# Editor/OS noise
+.DS_Store
+*.log

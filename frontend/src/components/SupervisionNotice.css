@@ -1,0 +1,24 @@
+/* Supervision notice styling. Reflow-safe (R-09.5): no fixed widths, wraps at
+ * 320px, and uses contrast-checked colours (R-09.1). */
+.ic-supervision-notice {
+  display: flex;
+  gap: var(--ic-space-sm);
+  align-items: flex-start;
+  max-width: 100%;
+  padding: var(--ic-space-sm) var(--ic-space-md);
+  background: var(--ic-color-notice-bg);
+  border: 1px solid var(--ic-color-notice-border);
+  border-left-width: 4px;
+  border-radius: var(--ic-radius);
+  color: var(--ic-color-notice-text);
+}
+
+.ic-supervision-notice__icon {
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.ic-supervision-notice__text {
+  margin: 0;
+  font-weight: 600;
+}
