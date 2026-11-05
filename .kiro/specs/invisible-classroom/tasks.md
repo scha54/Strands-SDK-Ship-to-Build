@@ -14,7 +14,7 @@ Conventions:
 
 ## Tasks
 
-- [ ] 1. Foundation: repository, typed contracts, configuration, CI
+- [x] 1. Foundation: repository, typed contracts, configuration, CI
   - [x] 1.1 Scaffold backend, repository layout and CI pipeline
     - Create `backend/app/` module layout from the design, `pyproject.toml` with pinned dependencies, lockfile, Ruff, mypy, pytest, Hypothesis
     - Create typed configuration for model ID, region, limits (depth 2, 8 calls, 45 s/15 s, 2 retries, 20,000 tokens, 1 MB, 50 concurrent, 60/min, 24 h) and budgets, loaded from environment with no secrets in code
@@ -29,7 +29,7 @@ Conventions:
     - **Done when:** unit tests show bound violations and extra identity fields (name, birthday, address, school, email) fail validation and valid examples pass
     - _Requirements: R-01.4, R-03.1, R-03.2, R-04.3, R-06.1; NFR-02_
 
-  - [ ] 1.3 Scaffold frontend and typed API client
+  - [x] 1.3 Scaffold frontend and typed API client
     - Create `frontend/src/{app,api,components,features,types}/` with Vite, TypeScript strict, ESLint, Vitest, fast-check
     - Generate TypeScript types from the FastAPI OpenAPI schema with an npm script; add a mobile-first base layout with a 320 px reflow-safe stylesheet and a shared supervision-notice component
     - **Done when:** `tsc`, ESLint and Vitest pass; the type generation script produces types from the backend schema; the notice component renders in a unit test
@@ -40,7 +40,7 @@ Conventions:
     - **Validates: Requirements R-03.1, R-03.2**
 
 - [ ] 2. Sessions: normalization, state, store, authorization, limits, setup UI
-  - [ ] 2.1 Implement object normalizer
+  - [x] 2.1 Implement object normalizer
     - Trim, collapse whitespace, case-insensitive dedupe, keep first original text, enforce 1 to 20 unique and 50 chars, return which limit was violated
     - **Done when:** unit tests cover whitespace, case duplicates, zero objects, 21 unique objects and 51-char names with the correct limit named
     - _Requirements: R-02.1, R-02.2; NFR-02_
@@ -49,7 +49,7 @@ Conventions:
     - **Property 3: Object normalization is canonical and lossless**
     - **Validates: Requirements R-02.1**
 
-  - [ ] 2.3 Implement session state machine
+  - [x] 2.3 Implement session state machine
     - Implement legal transitions from the design including `STOPPED`, `FAILED`, `ENDED`, `COMPLETED`, `DELETED`; Stop reachable from every non-terminal state; after Stop only read and delete are permitted
     - **Done when:** unit tests assert every illegal transition raises an invalid-state error and writes after STOPPED return a stopped-session error code
     - _Requirements: R-08.3, R-10.4; NFR-05_
@@ -58,7 +58,7 @@ Conventions:
     - **Property 20: State machine permits only legal transitions**
     - **Validates: Requirements R-08.3**
 
-  - [ ] 2.5 Implement Session_Store (in-memory and DynamoDB)
+  - [x] 2.5 Implement Session_Store (in-memory and DynamoDB)
     - Implement `create`, `get`, `put_if_version`, `delete` for both backends; store only permitted attributes (Age_Band, Subject, Objects, Lesson, answers, progress, timestamps, token hash, version, idempotency records); set `expires_at = updated_at + 24 h` on every persist; `get` raises NotFound or Expired using the injected clock before TTL removal; generate IDs with `secrets.token_urlsafe(32)`
     - **Done when:** contract tests run against the in-memory store and local DynamoDB; a stale `version` write fails; an expired record is rejected without TTL removal; the stored item has no attributes outside the allowed list
     - _Requirements: R-01.2, R-10.1, R-10.2, R-10.5, R-10.6, R-10.7, R-10.8; NFR-08_
@@ -67,7 +67,7 @@ Conventions:
     - **Property 25: Expiry is enforced on read**
     - **Validates: Requirements R-10.7, R-10.8**
 
-  - [ ] 2.7 Implement idempotency service
+  - [x] 2.7 Implement idempotency service
     - Compute payload hash; same key and hash within 24 h returns the stored result; same key with a different hash returns `idempotency_key_conflict`; the record is written in the same conditional write as the state change
     - **Done when:** unit tests show repeat calls apply the mutation once, a conflicting payload returns 409 with stored results unchanged, and a key older than 24 h is treated as new
     - _Requirements: R-05.3, R-11.2, R-11.7; NFR-05_
@@ -76,7 +76,7 @@ Conventions:
     - **Property 12: Mutations are idempotent within the window**
     - **Validates: Requirements R-05.3, R-11.2, R-11.7**
 
-  - [ ] 2.9 Implement API middleware, error mapping and health endpoints
+  - [x] 2.9 Implement API middleware, error mapping and health endpoints
     - Body-size (1 MB), concurrency cap (50), per-client rate limit (60/min), correlation ID, `ApiError` mapping (404, 409, 410, 413, 422, 429, 503) that names the limit exceeded; reject in middleware before any handler
     - Add `/healthz` (no external calls, within 500 ms) and `/readyz` (within 2 s, names unavailable dependencies)
     - **Done when:** API tests show each limit returns the right status and names the limit, with no store writes; `/healthz` returns 200 when the store is down; `/readyz` returns 503 naming the dependency
@@ -86,7 +86,7 @@ Conventions:
     - **Property 26: Request limits reject without side effects**
     - **Validates: Requirements R-11.4**
 
-  - [ ] 2.11 Implement session service, capability auth and session routes
+  - [x] 2.11 Implement session service, capability auth and session routes
     - `POST /sessions` (validate, normalize, create, return Session_ID and Capability_Token within 2 s, store only the token hash, zero model calls, no partial Session on failure), `GET /sessions/{id}`, `POST /sessions/{id}/stop` (within 2 s, rejects later answers/hints/advance, keeps data readable), `POST /sessions/{id}/end`, `DELETE /sessions/{id}` (confirm within 2 s); constant-time token comparison; 422 lists every invalid field
     - **Done when:** API tests cover valid creation, each invalid field, extra identity fields, wrong token, read/delete after delete (404), read after expiry (410), Stop then answer (409 stopped-session), and failed creation leaving no record
     - _Requirements: R-01.2, R-01.3, R-01.4, R-01.6, R-08.3, R-10.4, R-10.5, R-10.6, R-10.8; NFR-01, NFR-02, NFR-08_

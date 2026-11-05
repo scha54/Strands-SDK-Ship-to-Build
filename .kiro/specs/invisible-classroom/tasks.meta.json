@@ -40,6 +40,95 @@
         "executionId": "54742c86-0559-4a62-8453-b10f35536014",
         "chatSessionId": "sess_38f126f3-850e-42bd-905f-37b3ddb4e985",
         "timestamp": 1793816949873
+      },
+      {
+        "executionId": "2c7195b9-e247-4825-b5ee-4f4ca680678a",
+        "chatSessionId": "sess_071f8472-735c-4f02-b009-961be8bd722d",
+        "timestamp": 1793852816558
+      },
+      {
+        "executionId": "2c7195b9-e247-4825-b5ee-4f4ca680678a",
+        "chatSessionId": "sess_071f8472-735c-4f02-b009-961be8bd722d",
+        "timestamp": 1793857465139
+      }
+    ],
+    "1. Foundation: repository, typed contracts, configuration, CI": [
+      {
+        "executionId": "2c7195b9-e247-4825-b5ee-4f4ca680678a",
+        "chatSessionId": "sess_071f8472-735c-4f02-b009-961be8bd722d",
+        "timestamp": 1793857465392
+      }
+    ],
+    "2.1 Implement object normalizer": [
+      {
+        "executionId": "ca847ef7-4d4b-4f3b-a917-ba5bd0e23e65",
+        "chatSessionId": "sess_43e8909d-f3d2-4448-9af9-224c9488bedf",
+        "timestamp": 1793857494903
+      },
+      {
+        "executionId": "ca847ef7-4d4b-4f3b-a917-ba5bd0e23e65",
+        "chatSessionId": "sess_43e8909d-f3d2-4448-9af9-224c9488bedf",
+        "timestamp": 1793857722088
+      }
+    ],
+    "2.3 Implement session state machine": [
+      {
+        "executionId": "d62997e1-8c1f-4a02-9fa9-4bf46220ce78",
+        "chatSessionId": "sess_aa834ed7-cee3-4b50-86f8-7a7a4d439d0a",
+        "timestamp": 1793857781023
+      },
+      {
+        "executionId": "d62997e1-8c1f-4a02-9fa9-4bf46220ce78",
+        "chatSessionId": "sess_aa834ed7-cee3-4b50-86f8-7a7a4d439d0a",
+        "timestamp": 1793857923693
+      }
+    ],
+    "2.5 Implement Session_Store (in-memory and DynamoDB)": [
+      {
+        "executionId": "8a1149b4-c1a1-448f-a131-d871b1f19d1a",
+        "chatSessionId": "sess_124f0164-dd45-495f-9780-31ca93263d75",
+        "timestamp": 1793857958443
+      },
+      {
+        "executionId": "8a1149b4-c1a1-448f-a131-d871b1f19d1a",
+        "chatSessionId": "sess_124f0164-dd45-495f-9780-31ca93263d75",
+        "timestamp": 1793858524887
+      }
+    ],
+    "2.7 Implement idempotency service": [
+      {
+        "executionId": "25e25abf-b900-453e-9ac6-57a875add98c",
+        "chatSessionId": "sess_636d9cf6-5510-482d-a9dd-bd7e998a7a4d",
+        "timestamp": 1793858959655
+      },
+      {
+        "executionId": "25e25abf-b900-453e-9ac6-57a875add98c",
+        "chatSessionId": "sess_636d9cf6-5510-482d-a9dd-bd7e998a7a4d",
+        "timestamp": 1793859575588
+      }
+    ],
+    "2.9 Implement API middleware, error mapping and health endpoints": [
+      {
+        "executionId": "a96dc06d-1379-460e-a1bd-23b693bb2ec9",
+        "chatSessionId": "sess_ca59c503-07bf-469c-9067-b9e527067ee0",
+        "timestamp": 1793860430608
+      },
+      {
+        "executionId": "a96dc06d-1379-460e-a1bd-23b693bb2ec9",
+        "chatSessionId": "sess_ca59c503-07bf-469c-9067-b9e527067ee0",
+        "timestamp": 1793861273944
+      }
+    ],
+    "2.11 Implement session service, capability auth and session routes": [
+      {
+        "executionId": "52dab812-68a2-4f91-a849-32e33181e050",
+        "chatSessionId": "sess_8fa7bf75-d9e5-4485-b411-f13d1771aab1",
+        "timestamp": 1793861302200
+      },
+      {
+        "executionId": "52dab812-68a2-4f91-a849-32e33181e050",
+        "chatSessionId": "sess_8fa7bf75-d9e5-4485-b411-f13d1771aab1",
+        "timestamp": 1793861999026
       }
     ]
   }

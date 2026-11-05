@@ -169,6 +169,73 @@ class ApiError(BaseModel):
     details: dict[str, Any] | list[Any] | None = None
 
 
+# --- Persisted session record (R-10.1, R-10.2) ----------------------------------------------
+
+
+class ActivityStatus(BaseModel):
+    """Per-Activity progress: status plus attempt and clarification counts (R-05)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    activity_id: str = Field(min_length=1)
+    status: Literal["pending", "completed", "skipped"] = "pending"
+    attempts: int = Field(default=0, ge=0)
+    clarifications: int = Field(default=0, ge=0)
+
+
+class AnswerEntry(BaseModel):
+    """A stored answer. Session data only; never logged (R-10.2, R-10.3)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    activity_id: str = Field(min_length=1)
+    answer: str = Field(max_length=2000)
+
+
+class IdempotencyRecord(BaseModel):
+    """Idempotency record retained within the 24 h window (R-11.2, R-11.7)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    key: str = Field(min_length=1)
+    route: str = Field(min_length=1)
+    payload_hash: str = Field(min_length=1)
+    result_ref: str | None = None
+    created_at: datetime
+
+
+class SessionRecord(BaseModel):
+    """The persisted Session. Stores only the attributes permitted by R-10.1.
+
+    No child name, birthday, address, school or email; no cross-session link; no
+    raw images (R-10.2). ``extra="forbid"`` makes any attempt to carry a forbidden
+    attribute a validation error rather than a silent persist.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    session_id: str = Field(min_length=1)
+    token_hash: str = Field(min_length=1)
+    state: str = Field(min_length=1)
+    age_band: AgeBand
+    subject: Subject
+    language: Literal["en", "hi"] = "en"
+    objects: list[ObjectItem] = Field(default_factory=list)
+    lesson: Lesson | None = None
+    activity_status: list[ActivityStatus] = Field(default_factory=list)
+    answers: list[AnswerEntry] = Field(default_factory=list)
+    baseline: int | None = None
+    end_answer: int | None = None
+    current_index: int = Field(default=0, ge=0)
+    stage_events: list[AgentStageEvent] = Field(default_factory=list)
+    idempotency: list[IdempotencyRecord] = Field(default_factory=list)
+    generation_count: int = Field(default=0, ge=0)
+    created_at: datetime
+    updated_at: datetime
+    expires_at: datetime
+    version: int = Field(default=0, ge=0)
+
+
 # --- Versioned Specialist_Contracts (R-04.3) -------------------------------------------------
 
 
