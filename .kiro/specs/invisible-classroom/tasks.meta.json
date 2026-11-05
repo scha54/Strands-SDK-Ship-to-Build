@@ -1,0 +1,46 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Scaffold backend, repository layout and CI pipeline": [
+      {
+        "executionId": "bc99e6d0-3151-4ccf-b1d4-79817f6d36b5",
+        "chatSessionId": "sess_b48fc36c-8351-45d4-827b-b1dfe08fddd7",
+        "timestamp": 1793807330698
+      },
+      {
+        "executionId": "bc99e6d0-3151-4ccf-b1d4-79817f6d36b5",
+        "chatSessionId": "sess_b48fc36c-8351-45d4-827b-b1dfe08fddd7",
+        "timestamp": 1793807572396
+      }
+    ],
+    "1.2 Implement domain models and Specialist_Contracts": [
+      {
+        "executionId": "ca1fbe49-d1f9-468b-920a-a2941ed44edc",
+        "chatSessionId": "sess_b6c51411-c1e8-42ab-8cab-96779ea5347d",
+        "timestamp": 1793807656869
+      },
+      {
+        "executionId": "ca1fbe49-d1f9-468b-920a-a2941ed44edc",
+        "chatSessionId": "sess_b6c51411-c1e8-42ab-8cab-96779ea5347d",
+        "timestamp": 1793807817214
+      }
+    ],
+    "1.3 Scaffold frontend and typed API client": [
+      {
+        "executionId": "451f4dcc-f647-411a-9022-73c400d3d308",
+        "chatSessionId": "sess_3f50de1c-286b-4876-9b61-b6cf79dff700",
+        "timestamp": 1793807885066
+      },
+      {
+        "executionId": "eaf66c22-6117-4f32-94d2-eb1aa8e48cb2",
+        "chatSessionId": "sess_b10a1746-1cc3-47e1-ac61-146ed90e17e0",
+        "timestamp": 1793815622011
+      },
+      {
+        "executionId": "54742c86-0559-4a62-8453-b10f35536014",
+        "chatSessionId": "sess_38f126f3-850e-42bd-905f-37b3ddb4e985",
+        "timestamp": 1793816949873
+      }
+    ]
+  }
+}
