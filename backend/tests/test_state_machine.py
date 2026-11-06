@@ -16,9 +16,7 @@ from app.domain.state_machine import (
 )
 
 ALL_LEGAL_PAIRS: list[tuple[SessionState, SessionState]] = [
-    (source, target)
-    for source, targets in LEGAL_TRANSITIONS.items()
-    for target in targets
+    (source, target) for source, targets in LEGAL_TRANSITIONS.items() for target in targets
 ]
 
 ALL_ILLEGAL_PAIRS: list[tuple[SessionState, SessionState]] = [

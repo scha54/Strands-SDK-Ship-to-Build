@@ -42,6 +42,7 @@ from app.adapters.session_store import (
 )
 from app.domain.models import ApiError
 from app.domain.state_machine import InvalidStateTransition, SessionStoppedError, StateMachineError
+from app.services.lesson_service import LessonError
 
 # Header that carries the correlation ID on every request and response (R-11.3).
 CORRELATION_ID_HEADER = "X-Correlation-ID"
@@ -200,9 +201,7 @@ def _render(
     details: dict[str, Any] | list[Any] | None = None,
 ) -> JSONResponse:
     """Build a JSONResponse carrying an ``ApiError`` body and the correlation header."""
-    body = ApiError(
-        code=code, message=message, correlation_id=correlation_id, details=details
-    )
+    body = ApiError(code=code, message=message, correlation_id=correlation_id, details=details)
     return JSONResponse(
         status_code=status_code,
         content=jsonable_encoder(body),
@@ -258,9 +257,7 @@ async def _store_error_handler(request: Request, exc: SessionStoreError) -> JSON
     )
 
 
-async def _state_machine_error_handler(
-    request: Request, exc: StateMachineError
-) -> JSONResponse:
+async def _state_machine_error_handler(request: Request, exc: StateMachineError) -> JSONResponse:
     """Render a state-machine error (409) using its distinct ``code``."""
     return _render(
         HTTP_409_CONFLICT,
@@ -270,9 +267,12 @@ async def _state_machine_error_handler(
     )
 
 
-async def _validation_error_handler(
-    request: Request, exc: RequestValidationError
-) -> JSONResponse:
+async def _lesson_error_handler(request: Request, exc: LessonError) -> JSONResponse:
+    """Render a lesson-service error (cap reached, PII removal required, no usable objects)."""
+    return _render(exc.status_code, exc.code, exc.message, correlation_id_of(request))
+
+
+async def _validation_error_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
     """Render a 422 listing each invalid field (design status mapping).
 
     Field locations and messages come from Pydantic; no raw request body or prompt text is
@@ -302,5 +302,6 @@ def install_error_handlers(app: FastAPI) -> None:
     app.add_exception_handler(Unauthorized, _unauthorized_handler)  # type: ignore[arg-type]
     app.add_exception_handler(DependencyUnavailable, _dependency_unavailable_handler)  # type: ignore[arg-type]
     app.add_exception_handler(SessionStoreError, _store_error_handler)  # type: ignore[arg-type]
+    app.add_exception_handler(LessonError, _lesson_error_handler)  # type: ignore[arg-type]
     app.add_exception_handler(StateMachineError, _state_machine_error_handler)  # type: ignore[arg-type]
     app.add_exception_handler(RequestValidationError, _validation_error_handler)  # type: ignore[arg-type]

@@ -28,6 +28,7 @@ from fastapi import APIRouter, Depends, status
 from pydantic import BaseModel, Field
 
 from app.api.auth import AuthenticatedSession, get_session_service
+from app.api.routes.lessons import get_lesson_service
 from app.domain.models import (
     ActivityStatus,
     AgeBand,
@@ -35,6 +36,7 @@ from app.domain.models import (
     ObjectItem,
     Subject,
 )
+from app.services.lesson_service import LessonService
 from app.services.session_service import SessionService
 
 router = APIRouter(prefix="/api/v1", tags=["sessions"])
@@ -128,6 +130,7 @@ def get_session(
 def stop_session(
     session: AuthenticatedSession,
     service: Annotated[SessionService, Depends(get_session_service)],
+    lessons: Annotated[LessonService, Depends(get_lesson_service)],
 ) -> SessionView:
     """Stop the Session, blocking later answer/hint/advance writes (R-08.3).
 
@@ -135,6 +138,7 @@ def stop_session(
     write operations are rejected afterward with 409 ``session_stopped``.
     """
     service.stop(session.session_id)
+    lessons.cancel(session.session_id)  # cancel any pending model call (R-08.3)
     return _view(session.session_id, service)
 
 

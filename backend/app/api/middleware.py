@@ -260,6 +260,4 @@ def add_request_limit_middleware(
     client_identifier: ClientIdentifier = _client_identity,
 ) -> RequestLimitMiddleware:
     """Build a :class:`RequestLimitMiddleware` wrapping ``app`` with injected dependencies."""
-    return RequestLimitMiddleware(
-        app, settings, clock=clock, client_identifier=client_identifier
-    )
+    return RequestLimitMiddleware(app, settings, clock=clock, client_identifier=client_identifier)

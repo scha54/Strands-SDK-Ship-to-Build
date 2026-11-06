@@ -23,6 +23,10 @@ DEFAULTS: dict[str, object] = {
     "session_ttl_hours": 24,
     "max_generations_per_session": 2,
     "demo_fallback_trigger_seconds": 10.0,
+    "model_call_timeout_seconds": 15.0,
+    "model_retry_backoff_seconds": 0.2,
+    "circuit_breaker_failure_threshold": 5,
+    "circuit_breaker_reset_seconds": 30.0,
 }
 
 
@@ -43,7 +47,12 @@ def test_defaults_match_design() -> None:
 
 def test_every_default_covered() -> None:
     """The defaults table covers every non-model field. Validates: NFR-07."""
-    assert set(DEFAULTS) == set(Settings.model_fields) - {"model_id", "aws_region"}
+    assert set(DEFAULTS) == set(Settings.model_fields) - {
+        "model_id",
+        "aws_region",
+        "use_stub_model",
+    }
+    assert Settings().use_stub_model is False
 
 
 @pytest.mark.parametrize("name", sorted(DEFAULTS))

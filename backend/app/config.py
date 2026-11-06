@@ -32,6 +32,13 @@ class Settings(BaseSettings):
     lesson_generation_retries: int = Field(default=2, ge=0)
     max_tokens_per_request: int = Field(default=20_000, ge=1)
 
+    # Bedrock client resilience (NFR-05, NFR-07).
+    model_call_timeout_seconds: float = Field(default=15.0, gt=0)
+    model_retry_backoff_seconds: float = Field(default=0.2, ge=0)
+    circuit_breaker_failure_threshold: int = Field(default=5, ge=1)
+    circuit_breaker_reset_seconds: float = Field(default=30.0, gt=0)
+    use_stub_model: bool = False
+
     # Request limits (R-11.4).
     max_request_body_bytes: int = Field(default=1_048_576, ge=1)
     max_concurrent_requests: int = Field(default=50, ge=1)

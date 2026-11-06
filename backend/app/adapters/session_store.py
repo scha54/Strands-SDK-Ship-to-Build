@@ -206,11 +206,9 @@ class DynamoDBSessionStore:
         if table is not None:
             self._table = table
             return
-        import boto3  # type: ignore[import-not-found]  # lazy: only for the real backend
+        import boto3  # lazy: only for the real backend
 
-        resource = boto3.resource(
-            "dynamodb", region_name=region_name, endpoint_url=endpoint_url
-        )
+        resource = boto3.resource("dynamodb", region_name=region_name, endpoint_url=endpoint_url)
         self._table = resource.Table(self.TABLE_NAME)
 
     def create(self, s: SessionRecord) -> None:

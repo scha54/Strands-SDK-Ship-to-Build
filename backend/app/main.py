@@ -13,7 +13,13 @@ from datetime import timedelta
 
 from fastapi import FastAPI
 
+from app.adapters.bedrock import create_model_client
 from app.adapters.session_store import InMemorySessionStore, SessionStore
+from app.agents.assessment import AssessmentSpecialist
+from app.agents.curriculum import CurriculumSpecialist
+from app.agents.environment import EnvironmentSpecialist
+from app.agents.orchestrator import Orchestrator
+from app.agents.storytelling import StorytellingSpecialist
 from app.api.errors import install_error_handlers
 from app.api.middleware import (
     ClientIdentifier,
@@ -22,9 +28,23 @@ from app.api.middleware import (
     default_client_identifier,
     default_clock,
 )
-from app.api.routes import health, sessions
+from app.api.routes import health, lessons, sessions
 from app.config import Settings, get_settings
+from app.services.lesson_service import LessonService
 from app.services.session_service import SessionService
+
+
+def _build_lesson_service(store: SessionStore, settings: Settings) -> LessonService:
+    """Default lesson service: Strands specialists behind the resilient model client."""
+    client = create_model_client(settings)
+    orchestrator = Orchestrator(
+        environment=EnvironmentSpecialist(client),
+        curriculum=CurriculumSpecialist(client),
+        storytelling=StorytellingSpecialist(client),
+        assessment=AssessmentSpecialist(client),
+        settings=settings,
+    )
+    return LessonService(store, orchestrator, settings)
 
 
 def create_app(
@@ -35,6 +55,7 @@ def create_app(
     readiness_probes: health.ReadinessProbes | None = None,
     session_store: SessionStore | None = None,
     session_service: SessionService | None = None,
+    lesson_service: LessonService | None = None,
 ) -> FastAPI:
     """Build the FastAPI app with injected settings and dependencies.
 
@@ -62,6 +83,9 @@ def create_app(
     resolved_store = session_store or InMemorySessionStore(ttl=ttl)
     resolved_service = session_service or SessionService(resolved_store, ttl=ttl)
     app.state.session_service = resolved_service
+    app.state.lesson_service = lesson_service or _build_lesson_service(
+        resolved_store, resolved_settings
+    )
 
     # Error handlers first so middleware-raised and handler-raised errors both render as
     # ApiError bodies. (Registration order does not affect dispatch.)
@@ -72,6 +96,7 @@ def create_app(
     app.include_router(health.router)
     # Session routes (prefix /api/v1): creation is public; the rest require a capability token.
     app.include_router(sessions.router)
+    app.include_router(lessons.router)
 
     # Pure-ASGI request-limit middleware wraps the whole app so limits are enforced before
     # routing — rejections never reach a handler and never write to the store (R-11.4).

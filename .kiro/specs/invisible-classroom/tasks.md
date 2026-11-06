@@ -39,7 +39,7 @@ Conventions:
     - **Property 4: Lesson schema bounds are enforced**
     - **Validates: Requirements R-03.1, R-03.2**
 
-- [ ] 2. Sessions: normalization, state, store, authorization, limits, setup UI
+- [x] 2. Sessions: normalization, state, store, authorization, limits, setup UI
   - [x] 2.1 Implement object normalizer
     - Trim, collapse whitespace, case-insensitive dedupe, keep first original text, enforce 1 to 20 unique and 50 chars, return which limit was violated
     - **Done when:** unit tests cover whitespace, case duplicates, zero objects, 21 unique objects and 51-char names with the correct limit named
@@ -103,16 +103,16 @@ Conventions:
     - **Property 24: Deleted sessions are gone**
     - **Validates: Requirements R-10.5, R-10.6**
 
-  - [ ] 2.15 Build the setup feature in the Web_UI
+  - [x] 2.15 Build the setup feature in the Web_UI
     - Single-select Age_Band (6-8, 9-10, 11-12, none preselected), Subject selector (none preselected), Objects entry (1 to 20, 1 to 50 chars), Demo_Mode preset button that fills fields and keeps them editable, per-field errors that retain entered values, "Session could not be started" error with resubmit, no child identity fields
     - **Done when:** component tests assert the initial control state, per-field errors with retained values, preset fill and editability, and the failure message with resubmission
     - _Requirements: R-01.1, R-01.3, R-01.5, R-01.6, R-02.2, R-09.3; NFR-03, NFR-04_
 
-- [ ] 3. Checkpoint - Ensure all tests pass
+- [x] 3. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 4. Strands specialists, orchestrator and Bedrock adapter
-  - [ ] 4.1 Implement RequestBudget and Stage_Event emitter
+- [x] 4. Strands specialists, orchestrator and Bedrock adapter
+  - [x] 4.1 Implement RequestBudget and Stage_Event emitter
     - `RequestBudget.consume()` tracks depth, calls, tokens and deadline and raises `LimitReached(limit_name)`; emitter writes sanitized `{stage, specialist, status, contract_version?, timestamp}` events available within 1 second and never includes prompts, reasoning, credentials or internal IDs
     - **Done when:** unit tests show each limit raises with its name, and an event serialization test finds no prompt or identifier fields
     - _Requirements: R-04.4, R-04.5, R-04.7, R-12.3; NFR-05, NFR-07_
@@ -125,12 +125,12 @@ Conventions:
     - **Property 11: Stage events are well-formed and sanitized**
     - **Validates: Requirements R-04.5, R-12.3**
 
-  - [ ] 4.4 Implement Bedrock adapter and the four Strands specialists
+  - [x] 4.4 Implement Bedrock adapter and the four Strands specialists
     - Bedrock client wrapper with model ID and region from config, timeouts, bounded retries and circuit breaker; deterministic stub model for tests and local mode; Environment, Curriculum, Storytelling and Assessment specialists using Strands structured output into their Specialist_Contracts; specialists receive no shell, browser or write tools; object text and answers are passed as data in narrow prompts
     - **Done when:** each specialist returns its contract type from the stub model; a malformed stub response raises a contract error; the circuit breaker opens after repeated stub failures
     - _Requirements: R-04.1, R-04.3; NFR-05, NFR-07, NFR-10_
 
-  - [ ] 4.5 Implement the Orchestrator
+  - [x] 4.5 Implement the Orchestrator
     - `generate_lesson` invokes Environment, Curriculum and Storytelling in order; `assess` invokes the Assessment_Specialist; validate each output against its contract and record the contract version in the Stage_Event; retry a failing specialist up to the retry limit, then return an error naming the specialist and persist nothing; on `LimitReached` stop, emit a failed Stage_Event and return an error naming the limit; cancel pending model calls on Stop
     - **Done when:** orchestration tests with stubs assert invocation order and at least one call per specialist, retry counts, the named-specialist error with an empty store, the named-limit error, and cancellation on Stop
     - _Requirements: R-04.1, R-04.2, R-04.3, R-04.5, R-04.6, R-04.7, R-08.3; NFR-05, NFR-10_
@@ -139,11 +139,11 @@ Conventions:
     - **Property 9: Invalid specialist output is never persisted**
     - **Validates: Requirements R-04.3, R-04.6**
 
-- [ ] 5. Checkpoint - Ensure all tests pass
+- [x] 5. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 6. Safety, grounding, fallback and lesson generation
-  - [ ] 6.1 Implement PII detection and redaction
+- [x] 6. Safety, grounding, fallback and lesson generation
+  - [x] 6.1 Implement PII detection and redaction
     - Detect names, phone numbers, emails, street addresses, school names and birth dates; redact before any model call and return a warning; when redaction cannot complete, make no model call and return an error asking the Facilitator to remove the PII while leaving other session data unchanged
     - **Done when:** unit tests per PII type show redacted model input plus a warning, and the unredactable case shows zero model calls and unchanged session data
     - _Requirements: R-08.6, R-08.7; NFR-08, NFR-10_
@@ -152,7 +152,7 @@ Conventions:
     - **Property 21: PII never reaches a model**
     - **Validates: Requirements R-08.6, R-08.7**
 
-  - [ ] 6.3 Implement grounding gate and ambiguity/hazard handling for Objects
+  - [x] 6.3 Implement grounding gate and ambiguity/hazard handling for Objects
     - Every Activity and Lesson object must be in the inventory with no purchased supplies or paid services; ambiguous Objects get a clarification request or a visible one-sentence assumption of at most 100 characters; hazardous Objects are excluded from all Activities with a safe substitute or alternative use and a Facilitator notice
     - **Done when:** unit tests show an off-inventory item fails the gate, an ambiguous Object carries an assumption of at most 100 characters, and an excluded hazardous Object appears in no Activity and produces a notice
     - _Requirements: R-02.3, R-02.4, R-02.5, R-02.6, R-08.1; NFR-10_
@@ -161,7 +161,7 @@ Conventions:
     - **Property 5: Grounding gate matches the inventory**
     - **Validates: Requirements R-02.5, R-02.6, R-03.1**
 
-  - [ ] 6.5 Implement safety, age vocabulary, readability and composite Validation_Gates
+  - [x] 6.5 Implement safety, age vocabulary, readability and composite Validation_Gates
     - Hazard taxonomy (ingestion, sharp, fire, electricity, hazardous chemicals, heights, strangers, dangerous water), secrecy and emotional-dependence checks, Age_Band/Subject vocabulary rules, readability check (at most 3 sentences, at most 25 words each, grade 6 or lower), schema check; one failing Activity rejects the whole Lesson as a failed attempt; compose into `check_lesson` and `check_activity`
     - **Done when:** unit tests show each hazard category and a secrecy phrase reject the whole Lesson, over-long instructions fail readability, and a clean Lesson passes all gates
     - _Requirements: R-03.3, R-08.1, R-08.2, R-08.5, R-09.6; NFR-02, NFR-10_
@@ -174,7 +174,7 @@ Conventions:
     - **Property 22: Instruction text respects readability limits**
     - **Validates: Requirements R-09.6**
 
-  - [ ] 6.8 Implement lesson service, Safe_Templates and lesson/event routes
+  - [x] 6.8 Implement lesson service, Safe_Templates and lesson/event routes
     - Up to 1 initial attempt plus 2 retries on gate failure; on exhaustion return the labeled Safe_Template for the Age_Band and Subject, or a failure with no Lesson persisted; persist the Lesson with a conditional write (state `GENERATING` to `READY`, `FAILED` on failure); on model error or timeout cancel the call and within 2 s return an error with retry and Safe_Template options while keeping inputs; add curated Safe_Template Lessons for every Age_Band and Subject; add `POST /sessions/{id}/lessons` (idempotent, 202, per-session generation cap) and `GET /sessions/{id}/events`
     - **Done when:** service tests with stubs show at most 3 attempts, template fallback with a visible label, a failure with no stored Lesson when no template exists, a timeout response within 2 s with both options, and a repeated idempotency key not regenerating
     - _Requirements: R-03.1, R-03.4, R-03.5, R-04.5, R-11.1, R-11.2; NFR-05, NFR-10_
@@ -183,7 +183,7 @@ Conventions:
     - **Property 7: Bounded retry then safe fallback**
     - **Validates: Requirements R-03.4, R-03.5**
 
-  - [ ] 6.10 Implement learner view projector
+  - [x] 6.10 Implement learner view projector
     - Remove `expected_answer`, `rubric` and `facilitator_note` from learner responses while an Activity has no submitted answer; after an answer, include the expected answer and rubric for that Activity only; serve facilitator notes only via the facilitator view of the same authenticated session; show exactly one Activity and "n of N" progress
     - **Done when:** serialization tests show no leaked fields before an answer and exactly one Activity's answer and rubric afterward
     - _Requirements: R-03.2, R-03.6, R-03.7, R-05.1; NFR-02_
@@ -192,7 +192,7 @@ Conventions:
     - **Property 8: Learner view never leaks answers early**
     - **Validates: Requirements R-03.2, R-03.6, R-03.7**
 
-  - [ ] 6.12 Implement redacted observability
+  - [x] 6.12 Implement redacted observability
     - Per-request diagnostic record with redacted correlation ID, agent-stage statuses, latency in ms, error category and usage estimate; exclude credentials, personal data and learner free text; add OpenTelemetry spans and metrics for p50/p95 latency and estimated cost per Session
     - **Done when:** log-capture tests find no answer text or credentials in any record and each record has the required fields
     - _Requirements: R-10.3, R-11.3; NFR-01, NFR-08_
@@ -201,7 +201,7 @@ Conventions:
     - **Property 23: Learner free text never appears in logs**
     - **Validates: Requirements R-10.3, R-11.3**
 
-- [ ] 7. Checkpoint - Ensure all tests pass
+- [x] 7. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 8. Learning loop: grading, assessment, adaptation, baseline/end checks

@@ -54,9 +54,7 @@ def make_record(session_id: str | None = None, created: datetime = BASE_TIME) ->
         activity_status=[ActivityStatus(activity_id="a1")],
         current_index=0,
         idempotency=[
-            IdempotencyRecord(
-                key="k1", route="/sessions", payload_hash="ph", created_at=created
-            )
+            IdempotencyRecord(key="k1", route="/sessions", payload_hash="ph", created_at=created)
         ],
         generation_count=0,
         created_at=created,
@@ -76,9 +74,9 @@ def _in_memory_store() -> InMemorySessionStore:
 def _dynamodb_store_or_skip() -> DynamoDBSessionStore:
     """Build a DynamoDB-backed store against a local endpoint, else skip the variant."""
     try:
-        import boto3  # type: ignore[import-not-found]
-        from botocore.config import Config  # type: ignore[import-not-found]
-        from botocore.exceptions import (  # type: ignore[import-not-found]
+        import boto3
+        from botocore.config import Config
+        from botocore.exceptions import (
             BotoCoreError,
             ClientError,
         )
@@ -101,9 +99,7 @@ def _dynamodb_store_or_skip() -> DynamoDBSessionStore:
             resource.create_table(
                 TableName=table_name,
                 KeySchema=[{"AttributeName": "session_id", "KeyType": "HASH"}],
-                AttributeDefinitions=[
-                    {"AttributeName": "session_id", "AttributeType": "S"}
-                ],
+                AttributeDefinitions=[{"AttributeName": "session_id", "AttributeType": "S"}],
                 BillingMode="PAY_PER_REQUEST",
             )
             resource.Table(table_name).wait_until_exists()

@@ -91,9 +91,7 @@ def test_repeat_call_same_key_and_payload_applies_mutation_once() -> None:
     new_idempotency = append_record(
         current.idempotency, key, ROUTE, payload_hash, BASE_TIME, result_ref="answer#a1"
     )
-    mutated = current.model_copy(
-        update={"current_index": 1, "idempotency": new_idempotency}
-    )
+    mutated = current.model_copy(update={"current_index": 1, "idempotency": new_idempotency})
     store.put_if_version(mutated, expected=current.version)
 
     after_first = store.get(record.session_id, BASE_TIME)

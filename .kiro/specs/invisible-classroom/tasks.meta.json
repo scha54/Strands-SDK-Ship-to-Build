@@ -130,6 +130,198 @@
         "chatSessionId": "sess_8fa7bf75-d9e5-4485-b411-f13d1771aab1",
         "timestamp": 1793861999026
       }
+    ],
+    "2.15 Build the setup feature in the Web_UI": [
+      {
+        "executionId": "e328cfef-e8b0-48a4-929f-42543d0d2397",
+        "chatSessionId": "sess_8ffc54be-ed8f-46cd-aef9-9b35a6d6d5be",
+        "timestamp": 1793862941733
+      },
+      {
+        "executionId": "e328cfef-e8b0-48a4-929f-42543d0d2397",
+        "chatSessionId": "sess_8ffc54be-ed8f-46cd-aef9-9b35a6d6d5be",
+        "timestamp": 1793863345311
+      }
+    ],
+    "2. Sessions: normalization, state, store, authorization, limits, setup UI": [
+      {
+        "executionId": "e328cfef-e8b0-48a4-929f-42543d0d2397",
+        "chatSessionId": "sess_8ffc54be-ed8f-46cd-aef9-9b35a6d6d5be",
+        "timestamp": 1793863345508
+      }
+    ],
+    "3. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "a19d086b-6ef3-4cc9-ac4d-cfa31d619917",
+        "chatSessionId": "sess_2fc336d9-5e66-4c61-9fa3-d73c71411398",
+        "timestamp": 1793863374374
+      },
+      {
+        "executionId": "a19d086b-6ef3-4cc9-ac4d-cfa31d619917",
+        "chatSessionId": "sess_2fc336d9-5e66-4c61-9fa3-d73c71411398",
+        "timestamp": 1793863441069
+      }
+    ],
+    "4.1 Implement RequestBudget and Stage_Event emitter": [
+      {
+        "executionId": "08e65c83-da25-4834-8fd1-5c377f2dae0c",
+        "chatSessionId": "sess_ba75e252-52d5-4dc2-af1e-7ac6c444c0da",
+        "timestamp": 1793863466607
+      },
+      {
+        "executionId": "70a9ea88-d30c-4d2d-8b8f-5e8dc2e512ae",
+        "chatSessionId": "sess_fca27ec6-bed5-47ef-a9b5-41a08110cb99",
+        "timestamp": 1793964600009
+      },
+      {
+        "executionId": "5f86750c-7462-4653-afe5-6c6d241a1b7e",
+        "chatSessionId": "sess_fca27ec6-bed5-47ef-a9b5-41a08110cb99",
+        "timestamp": 1793965364821
+      },
+      {
+        "executionId": "5f86750c-7462-4653-afe5-6c6d241a1b7e",
+        "chatSessionId": "sess_fca27ec6-bed5-47ef-a9b5-41a08110cb99",
+        "timestamp": 1793965462227
+      }
+    ],
+    "4.4 Implement Bedrock adapter and the four Strands specialists": [
+      {
+        "executionId": "ba9dff03-033f-4981-a2a3-86550da85c81",
+        "chatSessionId": "sess_1c0928ff-7af6-4d73-aafa-485252ca7296",
+        "timestamp": 1793965778631
+      },
+      {
+        "executionId": "ba9dff03-033f-4981-a2a3-86550da85c81",
+        "chatSessionId": "sess_1c0928ff-7af6-4d73-aafa-485252ca7296",
+        "timestamp": 1793967268508
+      }
+    ],
+    "4.5 Implement the Orchestrator": [
+      {
+        "executionId": "c14396e3-7d04-4d8c-8fd3-faa6f7e437dd",
+        "chatSessionId": "sess_933a1903-5ea4-4f95-806e-f44cacee200f",
+        "timestamp": 1793967517529
+      },
+      {
+        "executionId": "c14396e3-7d04-4d8c-8fd3-faa6f7e437dd",
+        "chatSessionId": "sess_933a1903-5ea4-4f95-806e-f44cacee200f",
+        "timestamp": 1793968495742
+      }
+    ],
+    "4. Strands specialists, orchestrator and Bedrock adapter": [
+      {
+        "executionId": "c14396e3-7d04-4d8c-8fd3-faa6f7e437dd",
+        "chatSessionId": "sess_933a1903-5ea4-4f95-806e-f44cacee200f",
+        "timestamp": 1793968496367
+      }
+    ],
+    "5. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "56f3816e-6600-4026-88c9-5eee681e31bc",
+        "chatSessionId": "sess_d0fb144c-1277-40c9-91d3-457b7e44f7de",
+        "timestamp": 1793968800101
+      },
+      {
+        "executionId": "56f3816e-6600-4026-88c9-5eee681e31bc",
+        "chatSessionId": "sess_d0fb144c-1277-40c9-91d3-457b7e44f7de",
+        "timestamp": 1793968949239
+      }
+    ],
+    "6.1 Implement PII detection and redaction": [
+      {
+        "executionId": "6ce769e8-d67d-45a7-8d3f-a6ad996c55cb",
+        "chatSessionId": "sess_42d381f0-63d2-4828-984d-658117fd0cd5",
+        "timestamp": 1793968983470
+      },
+      {
+        "executionId": "6ce769e8-d67d-45a7-8d3f-a6ad996c55cb",
+        "chatSessionId": "sess_42d381f0-63d2-4828-984d-658117fd0cd5",
+        "timestamp": 1793969303569
+      }
+    ],
+    "6.3 Implement grounding gate and ambiguity/hazard handling for Objects": [
+      {
+        "executionId": "e267fab1-7e4d-4dab-820a-1f284a3d41d9",
+        "chatSessionId": "sess_f064fa5d-54be-4abd-889d-804cd3df5480",
+        "timestamp": 1793969378246
+      },
+      {
+        "executionId": "e267fab1-7e4d-4dab-820a-1f284a3d41d9",
+        "chatSessionId": "sess_f064fa5d-54be-4abd-889d-804cd3df5480",
+        "timestamp": 1793969594966
+      }
+    ],
+    "6.5 Implement safety, age vocabulary, readability and composite Validation_Gates": [
+      {
+        "executionId": "6e0d285d-29e5-435e-bd88-686f9d8513c3",
+        "chatSessionId": "sess_e97dd415-5781-4f2e-a90d-04e6e545b724",
+        "timestamp": 1793969947751
+      },
+      {
+        "executionId": "31401563-a472-4dcd-bb1f-f1c5a40097f7",
+        "chatSessionId": "sess_ec6a3707-2755-4199-afd8-a687935de534",
+        "timestamp": 1793978760673
+      },
+      {
+        "executionId": "31401563-a472-4dcd-bb1f-f1c5a40097f7",
+        "chatSessionId": "sess_ec6a3707-2755-4199-afd8-a687935de534",
+        "timestamp": 1793978855288
+      }
+    ],
+    "6.8 Implement lesson service, Safe_Templates and lesson/event routes": [
+      {
+        "executionId": "01f6ea6f-fe15-4148-a0a3-43fb39c47a56",
+        "chatSessionId": "sess_d5eb8b8e-4e0e-4f38-acec-acae531a503a",
+        "timestamp": 1793978940481
+      },
+      {
+        "executionId": "01f6ea6f-fe15-4148-a0a3-43fb39c47a56",
+        "chatSessionId": "sess_d5eb8b8e-4e0e-4f38-acec-acae531a503a",
+        "timestamp": 1793981443630
+      }
+    ],
+    "6.10 Implement learner view projector": [
+      {
+        "executionId": "bfb3d9d5-7a29-4f6a-a2eb-753779bb8ecd",
+        "chatSessionId": "sess_4065950d-3b97-40c1-85fd-42d27c63b6d9",
+        "timestamp": 1793981529494
+      },
+      {
+        "executionId": "bfb3d9d5-7a29-4f6a-a2eb-753779bb8ecd",
+        "chatSessionId": "sess_4065950d-3b97-40c1-85fd-42d27c63b6d9",
+        "timestamp": 1793981696620
+      }
+    ],
+    "6.12 Implement redacted observability": [
+      {
+        "executionId": "dfdd5ba8-e059-4fc1-aee2-8e1b3f375976",
+        "chatSessionId": "sess_780c963f-4939-4f27-a2ed-0c5645d17b72",
+        "timestamp": 1793981733174
+      },
+      {
+        "executionId": "dfdd5ba8-e059-4fc1-aee2-8e1b3f375976",
+        "chatSessionId": "sess_780c963f-4939-4f27-a2ed-0c5645d17b72",
+        "timestamp": 1793982565561
+      }
+    ],
+    "6. Safety, grounding, fallback and lesson generation": [
+      {
+        "executionId": "dfdd5ba8-e059-4fc1-aee2-8e1b3f375976",
+        "chatSessionId": "sess_780c963f-4939-4f27-a2ed-0c5645d17b72",
+        "timestamp": 1793982565791
+      }
+    ],
+    "7. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "7796d96c-23eb-439b-8b1f-504b8372071a",
+        "chatSessionId": "sess_b8c6d9b3-ca78-4f20-879c-fbfb002db26e",
+        "timestamp": 1793982587101
+      },
+      {
+        "executionId": "7796d96c-23eb-439b-8b1f-504b8372071a",
+        "chatSessionId": "sess_b8c6d9b3-ca78-4f20-879c-fbfb002db26e",
+        "timestamp": 1793982709043
+      }
     ]
   }
 }

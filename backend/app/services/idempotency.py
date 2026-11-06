@@ -64,9 +64,7 @@ def compute_payload_hash(payload: Any) -> str:
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
-def _within_window(
-    record: IdempotencyRecord, key: str, now: datetime, window: timedelta
-) -> bool:
+def _within_window(record: IdempotencyRecord, key: str, now: datetime, window: timedelta) -> bool:
     """Return whether ``record`` matches ``key`` and is still inside the retention window.
 
     A record created at or before ``now - window`` has aged out and is treated as absent
