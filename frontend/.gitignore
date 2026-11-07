@@ -10,3 +10,6 @@ openapi.json
 # Editor/OS noise
 .DS_Store
 *.log
+
+test-results/
+playwright-report/

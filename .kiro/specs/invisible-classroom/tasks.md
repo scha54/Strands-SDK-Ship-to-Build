@@ -256,33 +256,33 @@ Conventions:
 - [x] 9. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 10. Demo hardening: seed data, fallback, accessibility, evaluation, docs
-  - [ ] 10.1 Implement Demo_Mode, seed data and Demo_Fallback
+- [x] 10. Demo hardening: seed data, fallback, accessibility, evaluation, docs
+  - [x] 10.1 Implement Demo_Mode, seed data and Demo_Fallback
     - Seed file with Age_Band 6-8, mathematics (`arithmetic_counting`), exactly seven Objects (five stones, two leaves); `POST /demo/session` loads it within 3 s with no user input or image; if Bedrock is unavailable or silent for 10 s, play pre-recorded seed data through the same five stages with `source="demo_fallback"` and the label `Demo fallback — no live agent execution`; map Stage_Events onto the five stages (understand objects, choose objective, create story, assess answer, adapt next activity)
     - **Done when:** tests show the preset values, a seven-Object inventory, completion in 3 s with a stub, fallback after a 10 s stub timeout completing all five stages in order with the label, and identical stage order across two runs
     - _Requirements: R-12.1, R-12.2, R-12.4, R-12.6; NFR-05, NFR-09_
 
-  - [ ] 10.2 Build the five-stage timeline UI
+  - [x] 10.2 Build the five-stage timeline UI
     - Show the five sanitized stages in order, each pending, in progress or complete; show the fallback label on every stage screen when in fallback; exclude prompts, reasoning, credentials and internal identifiers; distinguish live from fallback execution (G5)
     - **Done when:** component tests show stage order and states, the label on each stage screen in fallback, and no sensitive fields in the rendered DOM
     - _Requirements: R-12.2, R-12.3, R-12.4; NFR-03, NFR-09_
 
-  - [ ] 10.3 Accessibility pass and alternative paths
+  - [x] 10.3 Accessibility pass and alternative paths
     - Keyboard order matching visual order, visible focus indicator with 3:1 contrast, programmatic labels, 4.5:1 / 3:1 text contrast, no horizontal scroll from 320 px; per-Activity alternatives for color, sound or fine-motor dependence with equal scoring; message, progress preservation and Facilitator notice when no alternative exists
     - **Done when:** axe checks show no violations on setup, timeline, activity and summary screens; keyboard-only and 320 px Playwright runs pass; a test shows equivalent answers via an alternative receive the same score and status, and the no-alternative case preserves progress and notifies the Facilitator
     - _Requirements: R-09.1 to R-09.5, R-09.8, R-09.10; NFR-03, NFR-04_
 
-  - [ ] 10.4 Add end-to-end tests and the evaluation harness
+  - [x] 10.4 Add end-to-end tests and the evaluation harness
     - Playwright flow: demo preset, baseline, wrong answer, hint, adapted challenge, end check, summary, delete; error-flow tests (model failure, Stop, expired session); evaluation script over at least 30 synthetic cases (schema, grounding, safety pass rates, scaffold relevance for scripted misconceptions), recording p50/p95 latency and estimated cost per Session; adversarial prompt-injection cases; live-model run is opt-in and its results are labeled separately from stubbed results
     - **Done when:** the E2E suite passes against the stub backend; the harness outputs pass rates and latency/cost figures; adversarial cases produce no gate bypass
     - _Requirements: R-12.2, R-12.6; NFR-03, NFR-04, NFR-05, NFR-09, NFR-10_
 
-  - [ ] 10.5 Write repository documentation and demo script
+  - [x] 10.5 Write repository documentation and demo script
     - README setup instructions, architecture documentation, seed data description, test instructions, and a demo script whose timed walkthrough is at most 180 seconds; document the release gates G1 to G5 and clearly mark measured versus illustrative outcomes and live versus fallback execution; no unsubstantiated efficacy claims
     - **Done when:** a docs check test confirms the files exist, the script lists timed steps totalling at most 180 seconds, and following the setup on a clean checkout starts Demo_Mode through all five stages
     - _Requirements: R-12.5, R-12.6; NFR-06, NFR-09_
 
-- [ ] 11. Checkpoint - Ensure all tests pass (P0 complete)
+- [x] 11. Checkpoint - Ensure all tests pass (P0 complete)
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 12. P1 stretch (optional, feature-flagged off by default, off the P0 critical path)
@@ -309,7 +309,7 @@ Conventions:
     - **Done when:** component tests show the controls absent with flags off and the P0 test suite passing unchanged with flags on
     - _Requirements: R-13.5, R-13.6, R-14.5, R-14.6, R-15.3; NFR-03_
 
-- [ ] 13. Final checkpoint - Ensure all tests pass
+- [x] 13. Final checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes

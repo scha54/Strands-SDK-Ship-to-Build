@@ -9,6 +9,8 @@ import type {
   QuestionView,
 } from "../../api/learning";
 import { SupervisionNotice } from "../../components/SupervisionNotice";
+import type { Capability } from "../accessibility/access";
+import { AccessModeSelector } from "../accessibility/AccessModeSelector";
 import { ActivityView } from "../activity/ActivityView";
 import { BaselineScreen } from "../baseline/BaselineScreen";
 import { EndCheckScreen } from "../baseline/EndCheckScreen";
@@ -53,6 +55,7 @@ export function LearningSession({
   const [result, setResult] = useState<AnswerResult | null>(null);
   const [hint, setHint] = useState<string | null>(null);
   const [ended, setEnded] = useState(false);
+  const [avoid, setAvoid] = useState<Capability[]>([]);
   const lastAction = useRef<((signal: AbortSignal) => Promise<void>) | null>(null);
   const answerKey = useRef<{ text: string; key: string } | null>(null);
 
@@ -187,7 +190,11 @@ export function LearningSession({
           onSubmitAnswer={submitAnswer}
           onHint={requestHint}
           onAdvance={advance}
+          avoid={avoid}
         />
+      )}
+      {phase.name === "activity" && (
+        <AccessModeSelector avoid={avoid} onChange={setAvoid} />
       )}
       {phase.name === "endcheck" && (
         <EndCheckScreen

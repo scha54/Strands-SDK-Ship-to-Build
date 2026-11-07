@@ -179,8 +179,9 @@ describe("SetupForm Demo_Mode preset (R-01.5)", () => {
     const objects = screen.getByLabelText("Objects") as HTMLTextAreaElement;
     const lines = objects.value.split("\n").filter((l) => l.length > 0);
     expect(lines).toHaveLength(7);
-    expect(lines.filter((l) => l === "stone")).toHaveLength(5);
-    expect(lines.filter((l) => l === "leaf")).toHaveLength(2);
+    expect(lines.filter((l) => l.startsWith("Stone"))).toHaveLength(5);
+    expect(lines.filter((l) => l.startsWith("Leaf"))).toHaveLength(2);
+    // R-12.1: all seven survive case-insensitive dedupe.\n    expect(new Set(lines.map((l) => l.toLowerCase())).size).toBe(7);
 
     // Fields remain editable after the preset fill.
     selectAge(/11 to 12/i);

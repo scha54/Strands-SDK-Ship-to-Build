@@ -6,7 +6,9 @@
 // `arithmetic_counting` Subject) and exactly seven Objects: five stones and two
 // leaves (R-12.1). The backend seed file is the single source of truth; these
 // values mirror it so the form can be pre-filled without a round trip. The
-// seven Objects match the seed exactly (stones and leaves repeated as entered).
+// seven Objects are the seed names verbatim. They must stay distinct under the backend
+// normalizer (case-insensitive dedupe), so each stone and leaf is numbered; a test reads the
+// seed file and fails on any drift.
 import type { AgeBand, Subject } from "../../api/types";
 
 export interface DemoPreset {
@@ -19,7 +21,7 @@ export interface DemoPreset {
 export const DEMO_PRESET: DemoPreset = {
   ageBand: "6-8",
   subject: "arithmetic_counting",
-  objects: ["stone", "stone", "stone", "stone", "stone", "leaf", "leaf"],
+  objects: ["Stone 1", "Stone 2", "Stone 3", "Stone 4", "Stone 5", "Leaf 1", "Leaf 2"],
 };
 
 /** The preset Objects rendered as the multi-line text the Objects field holds. */

@@ -48,7 +48,9 @@ export class ApiClient {
   constructor(options: ApiClientOptions = {}) {
     this.baseUrl = (options.baseUrl ?? DEFAULT_BASE_URL).replace(/\/$/, "");
     this.token = options.token;
-    this.fetchImpl = options.fetchImpl ?? fetch;
+    // Browsers throw "Illegal invocation" when fetch is called as a method of another object,
+    // so the default is wrapped rather than stored bare (found by the end-to-end run, task 10.4).
+    this.fetchImpl = options.fetchImpl ?? ((input, init) => fetch(input, init));
   }
 
   /** Returns a copy of this client that sends the given bearer token. */

@@ -5,6 +5,7 @@
 // expose route paths, so the route payloads are declared here next to the
 // client; shared schemas (SessionSummary, AssessmentStatus) come from the
 // generated types.
+import type { ActivityAccess } from "../features/accessibility/access";
 import type { ApiClient } from "./client";
 import type { AssessmentStatus, SessionSummary } from "./types";
 
@@ -21,6 +22,8 @@ export interface LearnerActivity {
   answer_kind: string;
   difficulty: number;
   answered: boolean;
+  /** Optional capability needs and per-capability alternatives (R-09.8). */
+  access?: ActivityAccess | null;
   expected_answer?: string | null;
   rubric?: string | null;
 }

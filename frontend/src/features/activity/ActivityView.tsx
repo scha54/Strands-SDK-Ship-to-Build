@@ -1,6 +1,12 @@
 import { useState } from "react";
 
 import type { AnswerResult, LearnerView } from "../../api/learning";
+import {
+  type Capability,
+  NO_ALTERNATIVE_MESSAGE,
+  describeUnmet,
+  resolveActivityAccess,
+} from "../accessibility/access";
 
 export const MAX_ANSWER_LENGTH = 2000;
 
@@ -12,6 +18,8 @@ export interface ActivityViewProps {
   onSubmitAnswer: (answer: string) => void;
   onHint: () => void;
   onAdvance: (outcome: "completed" | "skipped") => void;
+  /** Capabilities the Learner cannot use; selects an alternative path (R-09.8). */
+  avoid?: readonly Capability[];
 }
 
 /**
@@ -28,6 +36,7 @@ export function ActivityView({
   onSubmitAnswer,
   onHint,
   onAdvance,
+  avoid = [],
 }: ActivityViewProps): React.JSX.Element {
   const activity = view.activity;
   const [text, setText] = useState("");
@@ -44,12 +53,41 @@ export function ActivityView({
   const canContinue = result !== null && !result.clarification_requested;
   const numeric =
     activity.answer_kind === "integer" || activity.answer_kind === "decimal";
+  const access = resolveActivityAccess(activity.access, avoid);
+
+  // No alternative: tell the Learner, keep progress (nothing is reset or
+  // submitted) and show the Facilitator a notice (R-09.10).
+  if (access.kind === "unavailable") {
+    return (
+      <section aria-labelledby="activity-heading" className="ic-learning-screen">
+        <h2 id="activity-heading">{view.title}</h2>
+        <p data-testid="progress">{view.progress.label}</p>
+        <p data-testid="no-alternative" role="status">
+          {NO_ALTERNATIVE_MESSAGE}
+        </p>
+        <p data-testid="facilitator-access-notice" role="alert">
+          {describeUnmet(access.unmet)}
+        </p>
+        <button type="button" disabled={busy} onClick={() => onAdvance("skipped")}>
+          Skip this activity
+        </button>
+      </section>
+    );
+  }
 
   return (
     <section aria-labelledby="activity-heading" className="ic-learning-screen">
       <h2 id="activity-heading">{view.title}</h2>
       <p data-testid="progress">{view.progress.label}</p>
-      <p>{activity.instruction}</p>
+      {access.kind === "alternative" ? (
+        access.instructions.map((text) => (
+          <p key={text} data-testid="alternative-instruction">
+            {text}
+          </p>
+        ))
+      ) : (
+        <p>{activity.instruction}</p>
+      )}
       {activity.required_objects.length > 0 && (
         <p>Objects: {activity.required_objects.join(", ")}</p>
       )}

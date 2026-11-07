@@ -1,0 +1,71 @@
+/* Timeline styling. Reflow-safe at 320px (R-09.5), >= 4.5:1 text contrast
+ * (R-09.1 / NFR-03). State is conveyed by text as well as icon, never colour
+ * alone. */
+.ic-timeline {
+  max-width: 100%;
+}
+
+.ic-timeline__mode {
+  display: inline-block;
+  margin: 0;
+  padding: var(--ic-space-sm) var(--ic-space-md);
+  border: 2px solid var(--ic-color-accent);
+  border-radius: var(--ic-radius);
+  font-weight: 600;
+  color: var(--ic-color-accent);
+}
+
+.ic-timeline__mode--fallback {
+  background: var(--ic-color-notice-bg);
+  border-color: var(--ic-color-notice-border);
+  color: var(--ic-color-notice-text);
+}
+
+.ic-timeline__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ic-timeline__stage {
+  display: flex;
+  gap: var(--ic-space-sm);
+  align-items: flex-start;
+  padding: var(--ic-space-sm) var(--ic-space-md);
+  background: var(--ic-color-surface);
+  border-left: 4px solid var(--ic-color-muted);
+  border-radius: var(--ic-radius);
+  color: var(--ic-color-text);
+}
+
+.ic-timeline__stage + .ic-timeline__stage {
+  margin-top: var(--ic-space-sm);
+}
+
+.ic-timeline__stage--in_progress {
+  border-left-color: var(--ic-color-accent);
+}
+
+.ic-timeline__stage--complete {
+  border-left-color: #1d6b2f;
+}
+
+.ic-timeline__stage--failed {
+  border-left-color: #a31515;
+}
+
+.ic-timeline__title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.ic-timeline__state,
+.ic-timeline__fallback {
+  margin: 0;
+  color: var(--ic-color-muted);
+}
+
+.ic-timeline__fallback {
+  color: var(--ic-color-notice-text);
+  font-weight: 600;
+}

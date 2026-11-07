@@ -28,9 +28,10 @@ from app.api.middleware import (
     default_client_identifier,
     default_clock,
 )
-from app.api.routes import health, learning, lessons, sessions
+from app.api.routes import demo, health, learning, lessons, sessions
 from app.config import Settings, get_settings
 from app.services.assessment_service import AssessmentService
+from app.services.demo_service import DemoService
 from app.services.learning_loop import LearningLoopService, orchestrator_assessor
 from app.services.lesson_service import LessonService
 from app.services.session_service import SessionService
@@ -59,6 +60,7 @@ def create_app(
     session_service: SessionService | None = None,
     lesson_service: LessonService | None = None,
     learning_service: LearningLoopService | None = None,
+    demo_service: DemoService | None = None,
 ) -> FastAPI:
     """Build the FastAPI app with injected settings and dependencies.
 
@@ -95,6 +97,11 @@ def create_app(
         resolved_settings,
     )
 
+    # Demo_Mode reuses the session service, store and the lesson service's orchestrator.
+    app.state.demo_service = demo_service or DemoService(
+        resolved_service, resolved_store, resolved_lessons.orchestrator, resolved_settings
+    )
+
     # Error handlers first so middleware-raised and handler-raised errors both render as
     # ApiError bodies. (Registration order does not affect dispatch.)
     install_error_handlers(app)
@@ -106,6 +113,7 @@ def create_app(
     app.include_router(sessions.router)
     app.include_router(lessons.router)
     app.include_router(learning.router)
+    app.include_router(demo.router)
 
     # Pure-ASGI request-limit middleware wraps the whole app so limits are enforced before
     # routing — rejections never reach a handler and never write to the store (R-11.4).

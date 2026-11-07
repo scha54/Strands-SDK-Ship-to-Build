@@ -414,6 +414,97 @@
         "chatSessionId": "sess_c33a0980-a98f-49bf-95a2-d3a58ea4d87d",
         "timestamp": 1794014321399
       }
+    ],
+    "10.1 Implement Demo_Mode, seed data and Demo_Fallback": [
+      {
+        "executionId": "c78d84ca-9664-476d-b486-ec16dcc766ea",
+        "chatSessionId": "sess_68097812-b2ad-4407-87eb-5c2c555071d1",
+        "timestamp": 1794014510858
+      },
+      {
+        "executionId": "c78d84ca-9664-476d-b486-ec16dcc766ea",
+        "chatSessionId": "sess_68097812-b2ad-4407-87eb-5c2c555071d1",
+        "timestamp": 1794014880377
+      }
+    ],
+    "10.2 Build the five-stage timeline UI": [
+      {
+        "executionId": "beb67ccb-79e1-4699-8021-3a0396c31d87",
+        "chatSessionId": "sess_99868d7c-c989-4df4-b804-4b8305451ecc",
+        "timestamp": 1794014912804
+      },
+      {
+        "executionId": "beb67ccb-79e1-4699-8021-3a0396c31d87",
+        "chatSessionId": "sess_99868d7c-c989-4df4-b804-4b8305451ecc",
+        "timestamp": 1794015074988
+      }
+    ],
+    "10.3 Accessibility pass and alternative paths": [
+      {
+        "executionId": "ef432d03-8ffb-461d-af13-f4c825cee6dd",
+        "chatSessionId": "sess_81625615-043c-41b3-9c29-d4acf35cca92",
+        "timestamp": 1794015215827
+      },
+      {
+        "executionId": "ef432d03-8ffb-461d-af13-f4c825cee6dd",
+        "chatSessionId": "sess_81625615-043c-41b3-9c29-d4acf35cca92",
+        "timestamp": 1794018981310
+      }
+    ],
+    "10.4 Add end-to-end tests and the evaluation harness": [
+      {
+        "executionId": "77b0fb83-44cb-4db2-ab30-f42ed5e30f6a",
+        "chatSessionId": "sess_cfd5d4cc-e268-4236-9abf-64f48f6b521a",
+        "timestamp": 1794019111320
+      },
+      {
+        "executionId": "77b0fb83-44cb-4db2-ab30-f42ed5e30f6a",
+        "chatSessionId": "sess_cfd5d4cc-e268-4236-9abf-64f48f6b521a",
+        "timestamp": 1794020448344
+      }
+    ],
+    "10.5 Write repository documentation and demo script": [
+      {
+        "executionId": "77b0fb83-44cb-4db2-ab30-f42ed5e30f6a",
+        "chatSessionId": "sess_cfd5d4cc-e268-4236-9abf-64f48f6b521a",
+        "timestamp": 1794020455182
+      },
+      {
+        "executionId": "77b0fb83-44cb-4db2-ab30-f42ed5e30f6a",
+        "chatSessionId": "sess_cfd5d4cc-e268-4236-9abf-64f48f6b521a",
+        "timestamp": 1794021248367
+      }
+    ],
+    "10. Demo hardening: seed data, fallback, accessibility, evaluation, docs": [
+      {
+        "executionId": "77b0fb83-44cb-4db2-ab30-f42ed5e30f6a",
+        "chatSessionId": "sess_cfd5d4cc-e268-4236-9abf-64f48f6b521a",
+        "timestamp": 1794021248986
+      }
+    ],
+    "11. Checkpoint - Ensure all tests pass (P0 complete)": [
+      {
+        "executionId": "77b0fb83-44cb-4db2-ab30-f42ed5e30f6a",
+        "chatSessionId": "sess_cfd5d4cc-e268-4236-9abf-64f48f6b521a",
+        "timestamp": 1794021252733
+      },
+      {
+        "executionId": "77b0fb83-44cb-4db2-ab30-f42ed5e30f6a",
+        "chatSessionId": "sess_cfd5d4cc-e268-4236-9abf-64f48f6b521a",
+        "timestamp": 1794021617403
+      }
+    ],
+    "13. Final checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "77b0fb83-44cb-4db2-ab30-f42ed5e30f6a",
+        "chatSessionId": "sess_cfd5d4cc-e268-4236-9abf-64f48f6b521a",
+        "timestamp": 1794021621544
+      },
+      {
+        "executionId": "77b0fb83-44cb-4db2-ab30-f42ed5e30f6a",
+        "chatSessionId": "sess_cfd5d4cc-e268-4236-9abf-64f48f6b521a",
+        "timestamp": 1794021833647
+      }
     ]
   }
 }

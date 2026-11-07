@@ -18,6 +18,7 @@ from pydantic import BaseModel, ConfigDict
 
 from app.api.auth import AuthenticatedSession
 from app.domain.models import AgentStageEvent
+from app.services.demo_seed import DEMO_FALLBACK_LABEL
 from app.services.lesson_service import LessonService, Mode
 from app.services.safe_templates import SAFE_TEMPLATE_LABEL
 
@@ -75,6 +76,14 @@ def start_lesson(
     )
 
 
+def _label(source: str | None) -> str | None:
+    if source == "safe_template":
+        return SAFE_TEMPLATE_LABEL
+    if source == "demo_fallback":
+        return DEMO_FALLBACK_LABEL
+    return None
+
+
 @router.get("/sessions/{session_id}/events")
 def get_events(
     session: AuthenticatedSession,
@@ -86,7 +95,7 @@ def get_events(
         state=session.state,
         events=session.stage_events,
         lesson_source=lesson.source if lesson else None,
-        label=SAFE_TEMPLATE_LABEL if lesson and lesson.source == "safe_template" else None,
+        label=_label(lesson.source if lesson else None),
         error_code=failure[0] if failure else None,
         options=list(failure[1]) if failure else [],
     )

@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "age_band": "6-8",
+  "subject": "arithmetic_counting",
+  "subject_label": "mathematics",
+  "objects": ["Stone 1", "Stone 2", "Stone 3", "Stone 4", "Stone 5", "Leaf 1", "Leaf 2"],
+  "scripted_answer": {"activity_id": "d1", "answer": "4"},
+  "stages": [
+    {"stage": "understand_objects", "specialist": "environment", "contract_version": "1.0"},
+    {"stage": "choose_objective", "specialist": "curriculum", "contract_version": "1.0"},
+    {"stage": "create_story", "specialist": "storytelling", "contract_version": "1.0"},
+    {"stage": "assess_answer", "specialist": "assessment", "contract_version": "1.0"},
+    {"stage": "adapt_next_activity", "specialist": "orchestrator", "contract_version": null}
+  ],
+  "assessment": {
+    "status": "needs_support",
+    "explanation": "Close. Let's count the stones together, one at a time.",
+    "misconception": "Skipped one item while counting.",
+    "suggested_scaffold": "Touch each stone once as you count aloud.",
+    "confidence": 0.9,
+    "adjustment_note": "Same goal, with a smaller number to count first."
+  },
+  "lesson": {
+    "source": "demo_fallback",
+    "title": "Counting stones and leaves",
+    "objective": "Add and take away small numbers",
+    "objects": ["Stone 1", "Leaf 1"],
+    "setup": "Sit together and look at your stones and leaves.",
+    "activities": [
+      {
+        "id": "d1",
+        "instruction": "You have 3 stones in one hand and 2 stones in the other. How many stones do you have in all?",
+        "facilitator_note": "Stay nearby and let the learner count aloud.",
+        "required_objects": ["Stone 1"],
+        "answer_kind": "integer",
+        "expected_answer": "5",
+        "rubric": "Correct if the answer is 5.",
+        "hints": ["Count 3, then keep counting 2 more."],
+        "difficulty": 1
+      },
+      {
+        "id": "d2",
+        "instruction": "You have 6 leaves and give away 2. How many leaves are left?",
+        "facilitator_note": "Let the learner use the real leaves if they like.",
+        "required_objects": ["Leaf 1"],
+        "answer_kind": "integer",
+        "expected_answer": "4",
+        "rubric": "Correct if the answer is 4.",
+        "hints": ["Start at 6 and count back 2."],
+        "difficulty": 2
+      },
+      {
+        "id": "d3",
+        "instruction": "Make a row of 2 stones, then 2 more stones, then 2 more stones. How many stones are in the row?",
+        "facilitator_note": "Praise the counting method, not just the answer.",
+        "required_objects": ["Stone 1"],
+        "answer_kind": "integer",
+        "expected_answer": "6",
+        "rubric": "Correct if the answer is 6.",
+        "hints": ["Count by twos: 2, 4, then one more step."],
+        "difficulty": 3
+      }
+    ],
+    "baseline_question": {
+      "id": "baseline",
+      "topic": "adding and taking away small numbers",
+      "prompt": "How confident are you about adding and taking away small numbers?",
+      "scale_max": 5
+    },
+    "end_question": {
+      "id": "end",
+      "topic": "adding and taking away small numbers",
+      "prompt": "Now, how confident are you about adding and taking away small numbers?",
+      "scale_max": 5
+    },
+    "estimated_minutes": 5
+  }
+}
