@@ -37,7 +37,7 @@ export interface RequestOptions {
   body?: unknown;
   /** Idempotency key for mutating requests. */
   idempotencyKey?: string;
-  signal?: AbortSignal;
+  signal?: AbortSignal | undefined;
 }
 
 export class ApiClient {

@@ -158,6 +158,8 @@ class SessionSummary(BaseModel):
     baseline: int | None = None
     end_answer: int | None = None
     difference: int | None = None
+    baseline_skipped: bool = False
+    end_skipped: bool = False
     provisional_estimate: str | None = None
     warning: str | None = None
 
@@ -181,6 +183,9 @@ class ActivityStatus(BaseModel):
     status: Literal["pending", "completed", "skipped"] = "pending"
     attempts: int = Field(default=0, ge=0)
     clarifications: int = Field(default=0, ge=0)
+    hints_used: int = Field(default=0, ge=0)
+    assessment: AssessmentStatus | None = None
+    excluded: bool = False
 
 
 class AnswerEntry(BaseModel):

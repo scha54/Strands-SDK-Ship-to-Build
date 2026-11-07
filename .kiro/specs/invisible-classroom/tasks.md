@@ -204,8 +204,8 @@ Conventions:
 - [x] 7. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 8. Learning loop: grading, assessment, adaptation, baseline/end checks
-  - [ ] 8.1 Implement deterministic grader
+- [x] 8. Learning loop: grading, assessment, adaptation, baseline/end checks
+  - [x] 8.1 Implement deterministic grader
     - Parse integer/decimal answers and compare deterministically with no model call; text answers use word-level edit distance of at most 2 per word when `spelling_matters` is false; return `None` only when no deterministic verdict exists; return `unassessable` for ambiguous answers
     - **Done when:** unit tests show equal results for repeated inputs, correct marking of 2-edit misspellings, no tolerance when spelling matters, and `None` only for free-form answers
     - _Requirements: R-05.2, R-06.3, R-06.5, R-09.9; NFR-02_
@@ -218,7 +218,7 @@ Conventions:
     - **Property 18: Spelling tolerance applies only when spelling is not the objective**
     - **Validates: Requirements R-09.9**
 
-  - [ ] 8.4 Implement assessment service, clarification and adaptation
+  - [x] 8.4 Implement assessment service, clarification and adaptation
     - Grade deterministically first and invoke the Assessment_Specialist only when no verdict exists; return exactly one Assessment_Status with an explanation of at most 300 characters suited to the Age_Band; on misconception keep the objective, change scaffold level or difficulty, pass the adapted Activity through all gates and report the adjustment to the Facilitator; for unassessable answers request clarification, withhold an incorrect mark, and after 2 failed clarifications keep unassessable, offer skip or hint and exclude the answer from mastery estimates; label every mastery estimate "provisional" with no diagnostic language
     - **Done when:** tests show the specialist is not called for deterministically graded answers, explanations are at most 300 characters, adaptation preserves the objective and is reported, the third unclear answer is excluded from estimates, and no output contains diagnostic wording
     - _Requirements: R-04.2, R-06.1, R-06.2, R-06.3, R-06.4, R-06.6; NFR-09, NFR-10_
@@ -235,7 +235,7 @@ Conventions:
     - **Property 17: Unclear answers are never marked wrong and are eventually excluded**
     - **Validates: Requirements R-06.3, R-06.4**
 
-  - [ ] 8.8 Implement learning-loop routes
+  - [x] 8.8 Implement learning-loop routes
     - `POST /baseline` (answer or skip, shown before other content), `POST /answers` (idempotent, rejects empty, over 2,000 chars or wrong format with progress unchanged, result within 2 s for deterministic grading), `POST /hint` (scaffold with no expected-answer text, status unchanged), `POST /advance` (persist completed/skipped then advance; on persist failure keep the current Activity and allow retry), `POST /end-check` (same topic and answer scale, different wording), `GET /summary` (concepts practiced, at least one next step, provisional estimate); all writes rejected after Stop; observed difference only from both answered values
     - **Done when:** API tests cover each route, invalid answers leaving state unchanged, hints without answer text, persist-failure retry, stopped-session rejection, and summary content
     - _Requirements: R-05.2, R-05.3, R-05.4, R-05.5, R-05.6, R-05.7, R-05.8, R-07.1, R-07.2, R-07.6, R-08.3, R-10.9; NFR-02, NFR-05_
@@ -244,7 +244,7 @@ Conventions:
     - **Property 13: Invalid answers and hints leave progress unchanged**
     - **Validates: Requirements R-05.4, R-05.5**
 
-  - [ ] 8.10 Build the learning-loop UI
+  - [x] 8.10 Build the learning-loop UI
     - Baseline screen (answer or skip, displayed first), one-Activity view with "n of N", hint, answer, feedback and clarification prompts, no timed input, end-check screen, summary with concepts, next steps and the baseline/end difference rule (shown only when both answered, always with the not-validated warning, never an improvement statement for skipped, zero or negative), Stop, End and Delete controls, supervision notice on every Lesson screen, save-failure message within 2 s with retry and retained on-screen state
     - **Done when:** component tests assert the rules above, including the skipped-baseline flow continuing without data loss, and no timeout on answers
     - _Requirements: R-05.1, R-05.6, R-05.7, R-05.8, R-07.1 to R-07.6, R-08.3, R-08.4, R-09.7, R-10.4, R-10.9; NFR-03, NFR-09_
@@ -253,7 +253,7 @@ Conventions:
     - **Property 19: Observed difference is shown only when valid**
     - **Validates: Requirements R-07.3, R-07.4, R-07.5**
 
-- [ ] 9. Checkpoint - Ensure all tests pass
+- [x] 9. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 10. Demo hardening: seed data, fallback, accessibility, evaluation, docs

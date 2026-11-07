@@ -322,6 +322,98 @@
         "chatSessionId": "sess_b8c6d9b3-ca78-4f20-879c-fbfb002db26e",
         "timestamp": 1793982709043
       }
+    ],
+    "8.1 Implement deterministic grader": [
+      {
+        "executionId": "f3099367-9826-4c12-89f1-d2992a46b2f7",
+        "chatSessionId": "sess_adc3dc92-056a-4bef-8f06-c71ab999a70b",
+        "timestamp": 1793982806868
+      },
+      {
+        "executionId": "49e0805c-74c7-4a3d-9ad5-f1aca782d53c",
+        "chatSessionId": "sess_e1216b71-efc3-4e21-a285-880fd64cd190",
+        "timestamp": 1793987204813
+      },
+      {
+        "executionId": "089c4373-6d46-408a-9eb0-7c428b65b570",
+        "chatSessionId": "sess_e1216b71-efc3-4e21-a285-880fd64cd190",
+        "timestamp": 1793987489582
+      },
+      {
+        "executionId": "35acee54-6235-4292-b2ce-0839d3261d26",
+        "chatSessionId": "sess_e1216b71-efc3-4e21-a285-880fd64cd190",
+        "timestamp": 1793987982457
+      },
+      {
+        "executionId": "35acee54-6235-4292-b2ce-0839d3261d26",
+        "chatSessionId": "sess_e1216b71-efc3-4e21-a285-880fd64cd190",
+        "timestamp": 1793987985674
+      },
+      {
+        "executionId": "ebf59598-6811-46b7-982d-96cd9af6e8ec",
+        "chatSessionId": "sess_e1216b71-efc3-4e21-a285-880fd64cd190",
+        "timestamp": 1794012228100
+      },
+      {
+        "executionId": "ebf59598-6811-46b7-982d-96cd9af6e8ec",
+        "chatSessionId": "sess_e1216b71-efc3-4e21-a285-880fd64cd190",
+        "timestamp": 1794012326004
+      }
+    ],
+    "8.4 Implement assessment service, clarification and adaptation": [
+      {
+        "executionId": "0cf68546-2539-4f1f-a8c8-510ef63858e7",
+        "chatSessionId": "sess_c965eb36-663a-4f51-b006-afbed9280531",
+        "timestamp": 1794012358243
+      },
+      {
+        "executionId": "0cf68546-2539-4f1f-a8c8-510ef63858e7",
+        "chatSessionId": "sess_c965eb36-663a-4f51-b006-afbed9280531",
+        "timestamp": 1794012563148
+      }
+    ],
+    "8.8 Implement learning-loop routes": [
+      {
+        "executionId": "cc7624c0-762a-4ff3-a3c7-2df163020b1b",
+        "chatSessionId": "sess_93c4474d-375a-4c76-8f64-ccd92d165ac0",
+        "timestamp": 1794012620300
+      },
+      {
+        "executionId": "cc7624c0-762a-4ff3-a3c7-2df163020b1b",
+        "chatSessionId": "sess_93c4474d-375a-4c76-8f64-ccd92d165ac0",
+        "timestamp": 1794013464357
+      }
+    ],
+    "8.10 Build the learning-loop UI": [
+      {
+        "executionId": "c74a3028-9fd1-4224-800b-167d86d4a7cc",
+        "chatSessionId": "sess_fb03f741-1994-4dee-a2f1-04df3f9b8470",
+        "timestamp": 1794013518187
+      },
+      {
+        "executionId": "c74a3028-9fd1-4224-800b-167d86d4a7cc",
+        "chatSessionId": "sess_fb03f741-1994-4dee-a2f1-04df3f9b8470",
+        "timestamp": 1794013880603
+      }
+    ],
+    "8. Learning loop: grading, assessment, adaptation, baseline/end checks": [
+      {
+        "executionId": "c74a3028-9fd1-4224-800b-167d86d4a7cc",
+        "chatSessionId": "sess_fb03f741-1994-4dee-a2f1-04df3f9b8470",
+        "timestamp": 1794013881158
+      }
+    ],
+    "9. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "8a862df7-3fe6-4ed5-8796-8981b08512da",
+        "chatSessionId": "sess_c33a0980-a98f-49bf-95a2-d3a58ea4d87d",
+        "timestamp": 1794014077716
+      },
+      {
+        "executionId": "8a862df7-3fe6-4ed5-8796-8981b08512da",
+        "chatSessionId": "sess_c33a0980-a98f-49bf-95a2-d3a58ea4d87d",
+        "timestamp": 1794014321399
+      }
     ]
   }
 }

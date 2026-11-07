@@ -28,8 +28,10 @@ from app.api.middleware import (
     default_client_identifier,
     default_clock,
 )
-from app.api.routes import health, lessons, sessions
+from app.api.routes import health, learning, lessons, sessions
 from app.config import Settings, get_settings
+from app.services.assessment_service import AssessmentService
+from app.services.learning_loop import LearningLoopService, orchestrator_assessor
 from app.services.lesson_service import LessonService
 from app.services.session_service import SessionService
 
@@ -56,6 +58,7 @@ def create_app(
     session_store: SessionStore | None = None,
     session_service: SessionService | None = None,
     lesson_service: LessonService | None = None,
+    learning_service: LearningLoopService | None = None,
 ) -> FastAPI:
     """Build the FastAPI app with injected settings and dependencies.
 
@@ -83,8 +86,13 @@ def create_app(
     resolved_store = session_store or InMemorySessionStore(ttl=ttl)
     resolved_service = session_service or SessionService(resolved_store, ttl=ttl)
     app.state.session_service = resolved_service
-    app.state.lesson_service = lesson_service or _build_lesson_service(
-        resolved_store, resolved_settings
+    resolved_lessons = lesson_service or _build_lesson_service(resolved_store, resolved_settings)
+    app.state.lesson_service = resolved_lessons
+    # Learning loop shares the lesson service's orchestrator for the Assessment_Specialist.
+    app.state.learning_service = learning_service or LearningLoopService(
+        resolved_store,
+        AssessmentService(orchestrator_assessor(resolved_lessons.orchestrator, resolved_settings)),
+        resolved_settings,
     )
 
     # Error handlers first so middleware-raised and handler-raised errors both render as
@@ -97,6 +105,7 @@ def create_app(
     # Session routes (prefix /api/v1): creation is public; the rest require a capability token.
     app.include_router(sessions.router)
     app.include_router(lessons.router)
+    app.include_router(learning.router)
 
     # Pure-ASGI request-limit middleware wraps the whole app so limits are enforced before
     # routing — rejections never reach a handler and never write to the store (R-11.4).

@@ -158,6 +158,11 @@ class LessonService:
         # Injectable so tests can show the "no template exists" branch.
         self._build_template = template_builder
 
+    @property
+    def orchestrator(self) -> Orchestrator:
+        """The orchestrator, shared with the learning loop for assessment calls."""
+        return self._orchestrator
+
     # -- public API ---------------------------------------------------------------------------
 
     def start(self, session_id: str, key: str, mode: Mode = "generate") -> StartResult:
